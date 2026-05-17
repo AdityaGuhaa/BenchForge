@@ -1,0 +1,62 @@
+# Build output
+build/
+out/
+cmake-build-*/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+*.exp
+*.pdb
+*.ilk
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+Testing/
+compile_commands.json
+
+# IDE / editor
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*.user
+*.suo
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Node / frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Python (in case of helper scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs / databases / temp
+*.log
+*.sqlite
+*.sqlite3
+*.db
+
+# Local config / secrets
+.env
+.env.*
+*.local
