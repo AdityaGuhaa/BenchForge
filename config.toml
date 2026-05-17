@@ -1,0 +1,111 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# BenchForge Configuration File
+# Edit this file to match your system setup.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[general]
+# Port the web UI will be served on. Open http://localhost:7860 in your browser.
+port = 7860
+
+# Path to llama-bench executable.
+# Use forward slashes or double backslashes on Windows.
+# If you leave these as "bin/...", BenchForge will look next to the .exe (bundled mode).
+llama_bench_path = "bin/llama-bench.exe"
+llama_perplexity_path = "bin/llama-perplexity.exe"
+
+# Path to the SQLite database file (created automatically on first run).
+db_path = "data/benchforge.db"
+
+# Automatically open the browser when BenchForge starts.
+open_browser = true
+
+# ─────────────────────────────────────────────────────────────────────────────
+[discovery]
+# Directories to scan automatically for .gguf model files.
+# Add as many paths as you need.
+scan_dirs = [
+    "C:/Users/adity/models",
+]
+
+# Whether to scan subdirectories recursively.
+recursive_scan = true
+
+# ─────────────────────────────────────────────────────────────────────────────
+[benchmark]
+# Default preset: "quick" or "thorough"
+default_preset = "quick"
+
+# Number of CPU threads to use during inference.
+threads = 8
+
+# Number of layers to offload to GPU. Set to 99 to offload all layers.
+# Set to 0 for CPU-only inference.
+gpu_layers = 99
+
+# Repeat each benchmark run N times and average the results (reduces noise).
+repetitions = 3
+
+# ─────────────────────────────────────────────────────────────────────────────
+[presets.quick]
+# Fast run — good for a rough comparison across many models.
+prompt_tokens    = 128
+generation_tokens = 128
+repetitions      = 1
+
+[presets.thorough]
+# Slower but more statistically reliable results.
+prompt_tokens    = 512
+generation_tokens = 512
+repetitions      = 5
+
+# ─────────────────────────────────────────────────────────────────────────────
+[prompts]
+# Named prompt presets shown in the UI benchmark config panel.
+# These match the prompt categories from the inspiration chart.
+# token counts are approximate — llama-bench uses --n-prompt and --n-gen flags.
+
+[prompts.short_qa]
+label           = "Short QA"
+description     = "Short factual question-answer style prompt"
+prompt_tokens   = 64
+generation_tokens = 64
+
+[prompts.short_programming]
+label           = "Short Programming"
+description     = "Short code completion or simple function"
+prompt_tokens   = 128
+generation_tokens = 128
+
+[prompts.medium_reasoning]
+label           = "Medium Reasoning"
+description     = "Multi-step reasoning or explanation task"
+prompt_tokens   = 256
+generation_tokens = 256
+
+[prompts.medium_programming]
+label           = "Medium Programming"
+description     = "Medium complexity coding task"
+prompt_tokens   = 512
+generation_tokens = 256
+
+[prompts.long_architecture]
+label           = "Long Architecture"
+description     = "Large context architectural design or analysis"
+prompt_tokens   = 1024
+generation_tokens = 512
+
+[prompts.long_programming]
+label           = "Long Programming"
+description     = "Long codebase context, refactor or debug task"
+prompt_tokens   = 1024
+generation_tokens = 1024
+
+# ─────────────────────────────────────────────────────────────────────────────
+[perplexity]
+# Reference text file used for perplexity scoring (opt-in per run).
+reference_file  = "reference/wiki.test.txt"
+
+# ─────────────────────────────────────────────────────────────────────────────
+[export]
+# Default directory where exported files (PNG, JSON, CSV) are saved.
+export_dir = "exports"
